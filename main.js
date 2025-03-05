@@ -1,30 +1,49 @@
 // hello!
 
-// let bname = prompt('enter name br','');
+function checkAge(age){
+    return (age > 18) ? true : confirm('sooooo');
+}
 
-//  if (bname === 'edge') {
-//     alert('edge');
-//  } else if (bname === 'chrome' || bname === 'fox' || bname === 'opera' || bname === 'safari') {
-//     alert('any');
-//  } else alert('none');
+alert(checkAge(19));
 
 
 
+function checkAge(age){
+    return (age > 18) || confirm('fff');
+}
 
-// const number = +prompt('1 --- 3', '');
+alert(checkAge(19));
 
-// switch(number) {
-//     case 0:
-//         alert('0');
-//         break;
 
-//     case 1:
-//         alert('1');
-//         break;
-        
-//     case 2:
-//     case 3:
-//         alert('2 or 3');
-// }
 
+function min(a, b){
+    if (a < b) {
+        return a;
+    } else {
+        return b;
+    }
+}
+
+alert(min(1, 2));
+
+
+// Создайте страницу, которая запрашивает x и n, а затем выводит результат pow(x,n).
+// P.S. В этой задаче функция обязана поддерживать только натуральные значения n, 
+// т.е. целые от 1 и выше.
+
+function pow(x, n) {
+
+    let result = x;
+    for (let i = 1; i < n; i++){
+        result *= x;
+    }
+    return result;
+}
+
+let x = prompt('enter x', '');
+let n = prompt('enter n', '');
+
+if (n >= 1 && n % 1 == 0){
+    alert(pow(x, n));
+} else alert('nope');
 
