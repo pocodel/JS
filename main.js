@@ -1,22 +1,73 @@
 // hello!
 
-// function ask(question, yes, no) {
-//     if (confirm(question)) yes()
-//     else no();
-//   }
-  
-//   ask(
-//     "Вы согласны?",
-//     function() { alert("Вы согласились."); },
-//     function() { alert("Вы отменили выполнение."); }
-//   );
+let user = {
 
-let ask = (question, yes, no) => {
-    return (confirm(question)) ? yes() : no();
 }
 
-ask(
-    "agree?",
-    () => alert('yes'),
-    () => alert('no')
-);
+user.name = "jphn";
+user.surname = "smith";
+user.name = "Pete";
+
+delete user.naem;
+
+console.log(user);
+
+// // ??????????????????????????????????
+
+let schedule = {
+
+}
+
+let isEmpty = () => {
+    for (let key in schedule) {
+        return false;
+    } return true;
+}
+
+alert(isEmpty(schedule));
+
+schedule['17:10'] = 'diner';
+
+alert(isEmpty(schedule));
+
+// // ??????????????????????????????????
+
+let salaries = {
+    "jogn": 100,
+    "anna": 160,
+    "pate": 130,
+}
+
+let sum = () => {
+    let count = 0;
+    for (let key in salaries) {
+        count += salaries[key];
+    } return count;
+} 
+
+console.log(sum(salaries));
+
+// // ??????????????????????????????????
+
+let menu = {
+    width: 200,
+    hieght: 300,
+    title: 'My menu',
+};
+
+console.log(menu);
+
+multiplyNumeric(menu);
+
+console.log(menu);
+
+function multiplyNumeric() {
+  for (let key in menu) {
+    if (typeof menu[key] == 'number') {
+        menu[key] *= 2;
+    }
+  }
+}
+
+
+
