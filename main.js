@@ -1,73 +1,64 @@
 // hello!
 
-let user = {
+ let calculator = {
+    a: 0,
+    b: 0,
 
-}
 
-user.name = "jphn";
-user.surname = "smith";
-user.name = "Pete";
+    read() {
+        this.a = +prompt('a', 0);
+        this.b = +prompt('b', 0);
+    },
 
-delete user.naem;
+    sum() {
+        return this.a + this.b;
+    },
 
-console.log(user);
-
-// // ??????????????????????????????????
-
-let schedule = {
-
-}
-
-let isEmpty = () => {
-    for (let key in schedule) {
-        return false;
-    } return true;
-}
-
-alert(isEmpty(schedule));
-
-schedule['17:10'] = 'diner';
-
-alert(isEmpty(schedule));
-
-// // ??????????????????????????????????
-
-let salaries = {
-    "jogn": 100,
-    "anna": 160,
-    "pate": 130,
-}
-
-let sum = () => {
-    let count = 0;
-    for (let key in salaries) {
-        count += salaries[key];
-    } return count;
-} 
-
-console.log(sum(salaries));
-
-// // ??????????????????????????????????
-
-let menu = {
-    width: 200,
-    hieght: 300,
-    title: 'My menu',
-};
-
-console.log(menu);
-
-multiplyNumeric(menu);
-
-console.log(menu);
-
-function multiplyNumeric() {
-  for (let key in menu) {
-    if (typeof menu[key] == 'number') {
-        menu[key] *= 2;
+    mul() {
+        return this.a * this.b;
     }
-  }
+ }
+
+// *****************************************
+
+ console.log(calculator);
+
+ calculator.read();
+
+ console.log(calculator.sum());
+ console.log(calculator.mul());
+
+ console.log(calculator);
+
+let ledder = {
+    step: 0,
+
+    showStep () {
+        alert(this.step);
+        return this;
+    },
+
+    up () {
+        this.step++;
+        return this;
+    },
+
+    down () {
+        this.step--;
+        return this;
+    },
 }
+
+ledder
+.showStep()
+.up()
+.showStep()
+.down()
+.showStep();
+
+
+
+
 
 
 
