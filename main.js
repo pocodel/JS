@@ -1,70 +1,50 @@
 // // hello!
 
-// let obj = {};
+// Создайте функцию readNumber, которая будет запрашивать ввод числового значения 
+// до тех пор, пока посетитель его не введёт.
+// Функция должна возвращать числовое значение.
+// Также надо разрешить пользователю остановить процесс ввода, 
+// отправив пустую строку или нажав «Отмена». В этом случае функция должна вернуть null.
 
-// function A() {
-//     return obj;
-// }
+let readNumber = () => {
+    let number;
+    do {
+        number = prompt('enter number', '');
+        if (number == null) {
+            console.log(number);
+        }
+    } while (!isFinite(number));
 
-// function B() {
-//     return obj;
-// }
-
-// let a = new A();
-// let b = new B();
-
-// console.log(a == b);
-
-// ++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-// Создайте функцию-конструктор Calculator, которая создаёт объекты с тремя методами:
-// read() запрашивает два значения при помощи prompt и сохраняет их значение в свойствах объекта.
-// sum() возвращает сумму этих свойств.
-// mul() возвращает произведение этих свойств.
-
-// function Calculator() {
-
-//     this.read = function() {
-//         this.a = +prompt('enter a', 0);
-//         this.b = +prompt('enter b', 0);
-//     }
-
-//     this.sum = function() {
-//         return this.a + this.b;
-//     }
-
-//     this.mul = function() {
-//         return this.a * this.b;
-//     }
-// }
-
-// let calculator = new Calculator();
-
-// calculator.read();
-
-// console.log(calculator.sum());
-// console.log(calculator.mul());
-
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-// Создайте функцию-конструктор Accumulator(startingValue).
-// Объект, который она создаёт, должен уметь следующее:
-// Хранить «текущее значение» в свойстве value. 
-// Начальное значение устанавливается в аргументе конструктора startingValue.
-// Метод read() должен использовать prompt для считывания нового числа и прибавления его к value.
+    if (number == '' || number == null) return null;
+    return +number;
+}
 
 
-// function Accumulator (startingValue) {
-//     this.value = startingValue;
+alert(readNumber());
 
-//     this.read = function() {
-//         this.value += +prompt('enter value', 0);
-//     }
-// }
 
-// let accumulator = new Accumulator(1);
+// Нам нужно преобразовать каждое значение из интервала 0…1 в значения от min до max.
+// Это можно сделать в 2 шага:
+// Если мы умножим случайное число от 0…1 на max-min,
+//  тогда интервал возможных значений от 0..1 увеличивается до 0..max-min.
+// И, если мы прибавим min, то интервал станет от min до max.
+// Функция:
 
-// accumulator.read();
+let random = (min, max) => {
+    return min + Math.random() * (max - min);
+}
 
-// console.log(accumulator.value);
+console.log(random(1, 5));
+
+
+// Напишите функцию randomInteger(min, max), которая генерирует случайное целое (integer)
+//  число от min до max (включительно).
+// Любое число из интервала min..max должно появляться с одинаковой вероятностью.
+// Пример работы функции:
+
+let randomInteger = (min, max) => {
+    let rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
+};
+
+console.log(randomInteger(1, 5));
