@@ -1,50 +1,53 @@
 // // hello!
 
-// Создайте функцию readNumber, которая будет запрашивать ввод числового значения 
-// до тех пор, пока посетитель его не введёт.
-// Функция должна возвращать числовое значение.
-// Также надо разрешить пользователю остановить процесс ввода, 
-// отправив пустую строку или нажав «Отмена». В этом случае функция должна вернуть null.
+// Напишите функцию ucFirst(str), возвращающую строку str с заглавным первым символом. Например:
 
-let readNumber = () => {
-    let number;
-    do {
-        number = prompt('enter number', '');
-        if (number == null) {
-            console.log(number);
-        }
-    } while (!isFinite(number));
-
-    if (number == '' || number == null) return null;
-    return +number;
+let ucFirst = (str) => {
+   if (!str) return str;
+   return str[0].toUpperCase() + str.slice(1);
 }
 
+console.log(ucFirst('hello!'));
 
-alert(readNumber());
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+// Напишите функцию checkSpam(str), возвращающую true,
+//  если str содержит 'viagra' или 'XXX', а иначе false.
 
-// Нам нужно преобразовать каждое значение из интервала 0…1 в значения от min до max.
-// Это можно сделать в 2 шага:
-// Если мы умножим случайное число от 0…1 на max-min,
-//  тогда интервал возможных значений от 0..1 увеличивается до 0..max-min.
-// И, если мы прибавим min, то интервал станет от min до max.
-// Функция:
-
-let random = (min, max) => {
-    return min + Math.random() * (max - min);
+let checkSpam = (str) => {
+    str = str.toLowerCase();
+    if (str.includes('viagra') || str.includes('xxx')) {
+        return true;
+    } else return false;
 }
 
-console.log(random(1, 5));
+console.log(checkSpam('xxx'));
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-// Напишите функцию randomInteger(min, max), которая генерирует случайное целое (integer)
-//  число от min до max (включительно).
-// Любое число из интервала min..max должно появляться с одинаковой вероятностью.
-// Пример работы функции:
+// Создайте функцию truncate(str, maxlength), которая проверяет длину строки str и, 
+// если она превосходит maxlength, заменяет конец str на "…", так, чтобы её длина стала равна maxlength.
+// Результатом функции должна быть та же строка, если усечение не требуется, 
+// либо, если необходимо, усечённая строка.
 
-let randomInteger = (min, max) => {
-    let rand = min + Math.random() * (max + 1 - min);
-    return Math.floor(rand);
-};
+let truncate = (str, maxlength) => {
+    return (str.length > maxlength) ?
+     str.slice(0, maxlength - 3) + '...' : str;
+}
 
-console.log(randomInteger(1, 5));
+console.log(truncate('Вот, что мне хотелось бы сказать на эту тему:', 20));
+
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// Есть стоимость в виде строки "$120". То есть сначала идёт знак валюты, а затем – число.
+// Создайте функцию extractCurrencyValue(str), 
+// которая будет из такой строки выделять числовое значение и возвращать его.
+
+
+let ectractCurencyValue = (str) => {
+    return +str.slice(1);
+}
+
+console.log(ectractCurencyValue('$100'));
