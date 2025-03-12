@@ -1,53 +1,78 @@
 // // hello!
 
-// Напишите функцию ucFirst(str), возвращающую строку str с заглавным первым символом. Например:
+// Создайте массив styles с элементами «Джаз» и «Блюз».
+// Добавьте «Рок-н-ролл» в конец.
+// Замените значение в середине на «Классика». 
+// Ваш код для поиска значения в середине должен работать для массивов с любой длиной.
+// Удалите первый элемент массива и покажите его.
+// Вставьте Рэп и Регги в начало массива.
 
-let ucFirst = (str) => {
-   if (!str) return str;
-   return str[0].toUpperCase() + str.slice(1);
+let arr = ['jazz', 'bluzz'];
+
+arr.push('rock');
+
+console.log(arr);
+
+arr[((arr.length - 1) / 2)] = 'class';
+console.log(arr);
+
+console.log(arr.shift());
+
+console.log(arr);
+
+arr.unshift('rap', 'reggi');
+
+console.log(arr);
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// Напишите функцию sumInput(), которая:
+// Просит пользователя ввести значения, используя prompt и сохраняет их в массив.
+// Заканчивает запрашивать значения, когда пользователь введёт не числовое значение, 
+// пустую строку или нажмёт «Отмена».
+// Подсчитывает и возвращает сумму элементов массива.
+// P.S. Ноль 0 – считается числом, не останавливайте ввод значений при вводе «0».
+
+let = sumInput = () => {
+    
+    let arr = [];
+    
+    while (true) {
+        let value = prompt('enter num', 0);
+        
+        if (value === null || value === '' || !isFinite(value)) break;
+        
+        arr.push(+value);
+    }
+
+    let count = 0;
+    
+    for (let arrs of arr) {
+        count += arrs;
+    }
+
+    console.log(arr);
+    console.log(count);
 }
 
-console.log(ucFirst('hello!'));
+sumInput();
 
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-// Напишите функцию checkSpam(str), возвращающую true,
-//  если str содержит 'viagra' или 'XXX', а иначе false.
+function getMaxSubSum(arr) {
+    let maxSum = 0;
+    let partialSum = 0;
+  
+    for (let item of arr) { 
+      partialSum += item; 
+      
+      maxSum = Math.max(maxSum, partialSum); 
 
-let checkSpam = (str) => {
-    str = str.toLowerCase();
-    if (str.includes('viagra') || str.includes('xxx')) {
-        return true;
-    } else return false;
-}
+      if (partialSum < 0) partialSum = 0; 
+    }
+  
+    return maxSum;
+  }
 
-console.log(checkSpam('xxx'));
+  alert( getMaxSubSum([-1, 2, 3, -9]) ); 
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-// Создайте функцию truncate(str, maxlength), которая проверяет длину строки str и, 
-// если она превосходит maxlength, заменяет конец str на "…", так, чтобы её длина стала равна maxlength.
-// Результатом функции должна быть та же строка, если усечение не требуется, 
-// либо, если необходимо, усечённая строка.
-
-let truncate = (str, maxlength) => {
-    return (str.length > maxlength) ?
-     str.slice(0, maxlength - 3) + '...' : str;
-}
-
-console.log(truncate('Вот, что мне хотелось бы сказать на эту тему:', 20));
-
-
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-// Есть стоимость в виде строки "$120". То есть сначала идёт знак валюты, а затем – число.
-// Создайте функцию extractCurrencyValue(str), 
-// которая будет из такой строки выделять числовое значение и возвращать его.
-
-
-let ectractCurencyValue = (str) => {
-    return +str.slice(1);
-}
-
-console.log(ectractCurencyValue('$100'));
