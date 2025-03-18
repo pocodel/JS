@@ -1,41 +1,43 @@
 // hello!
 
-// Создайте функцию unique(arr), 
-// которая вернёт массив уникальных, 
-// не повторяющихся значений массива arr.
+// Есть объект salaries с произвольным количеством свойств, содержащих заработные платы.
+// Напишите функцию sumSalaries(salaries), которая возвращает сумму 
+// всех зарплат с помощью метода Object.values и цикла for..of.
 
-let values = ["Hare", "Krishna", "Hare", "Krishna",
-    "Krishna", "Krishna", "Hare", "Hare", ":-O"];
+let salaries = {
+    "John": 100,
+    "Pete": 300,
+    "Mary": 250
+  };
 
-let uniqe = (arr) => {
-    return Array.from(new Set(arr));
-}
+  let sumSalaries = (salaries) => {
+    let sum = 0;
+    for (let salary of Object.values(salaries)) {
+        sum += salary;
+    }
 
-alert(uniqe(values));
+    return sum;
+  };
 
-// ////////////////////////////////////////////////////////////
+  alert(sumSalaries(salaries));
+
+// ////////////////////////////////////////////////////////////////////////////////
+
+// Напишите функцию count(obj), которая возвращает количество свойств объекта:
+
+let user = {
+    name: 'John',
+    age: 30,
+    age3: 3230
+  };
+
+  let count = (obj) => {
+      return Object.keys(obj).length;
+  }
+
+ console.log(count(user));
 
 
-// Напишите функцию aclean(arr), которая возвращает массив слов, очищенный от анаграмм.
-
-let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
-
-let aclean = (arr) => {
-    let map = new Map();
-    
-    arr.forEach(element => {
-        let sortedKey = element.toLowerCase().split('').sort().join('');
-        if (!map.has(sortedKey)) {
-            map.set(sortedKey, element);
-        }
-    });
-        return Array.from(map.values());
-
-}
-
-console.log(aclean(arr));
-
-// ///////////////////////////////////////////////////////////
 
 
 
