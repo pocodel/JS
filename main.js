@@ -1,8 +1,28 @@
 // hello!
 
-// Есть объект salaries с произвольным количеством свойств, содержащих заработные платы.
-// Напишите функцию sumSalaries(salaries), которая возвращает сумму 
-// всех зарплат с помощью метода Object.values и цикла for..of.
+// Напишите деструктурирующее присваивание, которое:
+
+// свойство name присвоит в переменную name.
+// свойство years присвоит в переменную age.
+// свойство isAdmin присвоит в переменную isAdmin (false, если нет такого свойства)
+
+let user = {
+    name: "John",
+    years: 30,
+    isAdmin: true,
+};
+
+let {name, years: age, isAdmin = false} = user;
+
+alert(isAdmin);
+
+// ///////////////////////////////////////////////////////////////////////////
+
+
+// Создайте функцию topSalary(salaries), 
+// которая возвращает имя самого высокооплачиваемого сотрудника.
+// Если объект salaries пустой, то нужно вернуть null.
+// Если несколько высокооплачиваемых сотрудников, можно вернуть любого из них.
 
 let salaries = {
     "John": 100,
@@ -10,38 +30,21 @@ let salaries = {
     "Mary": 250
   };
 
-  let sumSalaries = (salaries) => {
-    let sum = 0;
-    for (let salary of Object.values(salaries)) {
-        sum += salary;
+  let topSalaries = (obj) => {
+    let max = 0;
+    let maxName = null;
+
+    for (const [name, salary] of Object.entries(obj)) {
+        if (max < salary) {
+            max = salary;
+            maxName = name;
+        }
     }
 
-    return sum;
-  };
-
-  alert(sumSalaries(salaries));
-
-// ////////////////////////////////////////////////////////////////////////////////
-
-// Напишите функцию count(obj), которая возвращает количество свойств объекта:
-
-let user = {
-    name: 'John',
-    age: 30,
-    age3: 3230
-  };
-
-  let count = (obj) => {
-      return Object.keys(obj).length;
+    return maxName;
   }
 
- console.log(count(user));
-
-
-
-
-
-
+  console.log(topSalaries(salaries));
 
 
 
