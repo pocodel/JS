@@ -1,50 +1,100 @@
-// hello!
 
-// Напишите деструктурирующее присваивание, которое:
+let date = new Date(2012, 1, 20, 3, 12);
 
-// свойство name присвоит в переменную name.
-// свойство years присвоит в переменную age.
-// свойство isAdmin присвоит в переменную isAdmin (false, если нет такого свойства)
+alert(date);
 
-let user = {
-    name: "John",
-    years: 30,
-    isAdmin: true,
+
+/////////////////////////////////////////////////////////////////
+
+// Напишите функцию getWeekDay(date), показывающую день недели в коротком формате: 
+// «ПН», «ВТ», «СР», «ЧТ», «ПТ», «СБ», «ВС».
+
+let arr = ['sun', 'mn', 'th', 'wh', 'tha', 'fr', 'sat'];
+
+let getWeekDay = (date) => {
+    return arr[date.getDay()]
 };
 
-let {name, years: age, isAdmin = false} = user;
+date = new Date(2025, 2, 21);
 
-alert(isAdmin);
-
-// ///////////////////////////////////////////////////////////////////////////
+console.log(getWeekDay(date));
 
 
-// Создайте функцию topSalary(salaries), 
-// которая возвращает имя самого высокооплачиваемого сотрудника.
-// Если объект salaries пустой, то нужно вернуть null.
-// Если несколько высокооплачиваемых сотрудников, можно вернуть любого из них.
+/////////////////////////////////////////////////////////////////
 
-let salaries = {
-    "John": 100,
-    "Pete": 300,
-    "Mary": 250
-  };
+// Напишите функцию getLocalDay(date), которая возвращает «европейский» день недели для даты date.
 
-  let topSalaries = (obj) => {
-    let max = 0;
-    let maxName = null;
 
-    for (const [name, salary] of Object.entries(obj)) {
-        if (max < salary) {
-            max = salary;
-            maxName = name;
-        }
-    }
+let getLocalDate = (date) => {
+    if (date.getDay() == 0) {
+        return 7;
+    } else return date.getDay();
+};
 
-    return maxName;
-  }
+let date = new Date(2025, 2, 21);
 
-  console.log(topSalaries(salaries));
+console.log(getLocalDate(date));
+
+
+/////////////////////////////////////////////////////////////////
+
+// Создайте функцию getDateAgo(date, days), 
+// возвращающую число, которое было days дней назад от даты date.
+
+let date = new Date(2025, 2, 21);
+
+let getDateAgo = (date, day) => {
+    let copy = new Date(date);
+    copy.setDate(date.getDate() - day);
+
+    return copy;
+};
+
+console.log(getDateAgo(date, 1));
+
+/////////////////////////////////////////////////////////////////
+
+// Напишите функцию getLastDayOfMonth(year, month), возвращающую последнее число месяца. 
+// Иногда это 30, 31 или даже февральские 28/29.
+
+
+let getLastDayOfYear = (year, month) => {
+    let date = new Date(year, month + 1, 0);
+    return date.getDate();
+
+}
+
+console.log(getLastDayOfYear(2012, 1));
+
+/////////////////////////////////////////////////////////////////
+
+// Напишите функцию getSecondsToday(), возвращающую количество секунд с начала сегодняшнего дня.
+
+let getSecondsToday = () => {
+    let hour = new Date();
+    hour = (hour.getHours() * 3600) + (hour.getMinutes() * 60) + hour.getSeconds();
+    alert(hour);
+}
+
+getSecondsToday();
+
+/////////////////////////////////////////////////////////////////
+
+// Создайте функцию getSecondsToTomorrow(), возвращающую количество секунд до завтрашней даты.
+
+let getSecondsToTomorrow = () => {
+    let time = new Date();
+    let full = 86400;
+
+    return full - (time = (time.getHours() * 3600) + (time.getMinutes() * 60) + time.getSeconds());
+};
+
+console.log(getSecondsToTomorrow());
+
+/////////////////////////////////////////////////////////////////
+
+
+
 
 
 
