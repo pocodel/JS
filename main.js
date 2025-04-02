@@ -1,37 +1,49 @@
 // hello!
 
-let  printNumbers = (from, to) => {
-   let current = from;
+function work(a, b) {
+    alert( a + b ); // произвольная функция или метод
+  }
 
-   let timerID = setInterval(function() {
-    alert(current);
-    if (current == to) {
-        clearInterval(timerID);
+  let spy = (func) => {
+    function wrapper(...args) {
+        wrapper.calls.push(args);
+        return func.apply(this, args);
     }
 
-    current++;
-   }, 1000);
-}
+    wrapper.calls = [];
 
-console.log(printNumbers(1, 6));
+    return wrapper;
+  }
+  
+  work = spy(work);
+  
+  work(1, 2); // 3
+  work(4, 5); // 9
+  
+  for (let args of work.calls) {
+    alert( 'call:' + args.join() ); // "call:1,2", "call:4,5"
+  }
 
 
 
 
+function f(x) {
+    alert(x);
+  }
 
-let printNumbers = (from, to) => {
-    let current = from;
+  let delay = (f, ms) => {
+    return function() {
+        setTimeout(() => f.apply(this, arguments), ms);
+    }
+  }
+  
+  // создаём обёртки
+  let f1000 = delay(f, 1000);
+  let f1500 = delay(f, 1500);
+  
+    f1000("test"); // показывает "test" после 1000 мс
+  f1500("test"); // показывает "test" после 1500 мс
 
-    setTimeout(function go() {
-        alert(current);
-        if (current < to) {
-            setTimeout(go, 1000);
-        }
-        current++;
-    }, 1000)
-}
 
-console.log(printNumbers(5, 10));
 
-////////////////////////////////////////////////////////////////
 
