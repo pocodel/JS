@@ -1,48 +1,50 @@
 // hello!
 
-function work(a, b) {
-    alert( a + b ); // произвольная функция или метод
-  }
-
-  let spy = (func) => {
-    function wrapper(...args) {
-        wrapper.calls.push(args);
-        return func.apply(this, args);
+class Clock {
+    constructor({ template }) {
+      this.template = template;
     }
-
-    wrapper.calls = [];
-
-    return wrapper;
-  }
   
-  work = spy(work);
+    render() {
+      let date = new Date();
   
-  work(1, 2); // 3
-  work(4, 5); // 9
+      let hours = date.getHours();
+      if (hours < 10) hours = '0' + hours;
   
-  for (let args of work.calls) {
-    alert( 'call:' + args.join() ); // "call:1,2", "call:4,5"
-  }
-
-
-
-
-function f(x) {
-    alert(x);
-  }
-
-  let delay = (f, ms) => {
-    return function() {
-        setTimeout(() => f.apply(this, arguments), ms);
+      let mins = date.getMinutes();
+      if (mins < 10) mins = '0' + mins;
+  
+      let secs = date.getSeconds();
+      if (secs < 10) secs = '0' + secs;
+  
+      let output = this.template
+        .replace('h', hours)
+        .replace('m', mins)
+        .replace('s', secs);
+  
+      console.log(output);
+    }
+  
+    stop() {
+      clearInterval(this.timer);
+    }
+  
+    start() {
+      this.render();
+      this.timer = setInterval(() => this.render(), 1000);
     }
   }
-  
-  // создаём обёртки
-  let f1000 = delay(f, 1000);
-  let f1500 = delay(f, 1500);
-  
-    f1000("test"); // показывает "test" после 1000 мс
-  f1500("test"); // показывает "test" после 1500 мс
+
+
+  class ExtendClock extends Clock {
+    constructor(precision) {
+        this.precision = precision;
+    }
+  }
+
+let clock = new Clock({template: 'h:m:s'});
+
+let extendClock = new Clock(1000);
 
 
 
